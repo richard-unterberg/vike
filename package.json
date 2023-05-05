@@ -50,6 +50,10 @@
   },
   "pnpm": {
     "overrides": {
+      "@vitejs/plugin-react": "4.2.1",
+      "@vitejs/plugin-react-swc": "3.5.0",
+      "@vitejs/plugin-vue": "4.5.2",
+      "vite": "5.0.8",
       "vike": "link:./vike/"
     },
     "packageExtensions": {
