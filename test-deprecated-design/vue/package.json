@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "vite",
+    "_LA_TEMP": "port",
+    "dev": "vite --port 3001",
     "build": "vite build",
     "preview": "vite build && vite preview"
   },
