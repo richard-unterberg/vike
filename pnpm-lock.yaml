@@ -1928,8 +1928,8 @@ importers:
         specifier: ^3.2.31
         version: 3.3.8
       '@vue/server-renderer':
-        specifier: ^3.2.37
-        version: 3.3.8(vue@3.3.8)
+        specifier: ^3.3.9
+        version: 3.3.10(vue@3.3.8)
       compression:
         specifier: ^1.7.4
         version: 1.7.4
@@ -5015,6 +5015,16 @@ packages:
       '@vue/compiler-ssr': 3.3.10
       '@vue/shared': 3.3.10
       vue: 3.3.10(typescript@4.8.4)
+    dev: false
+
+  /@vue/server-renderer@3.3.10(vue@3.3.8):
+    resolution: {integrity: sha512-0i6ww3sBV3SKlF3YTjSVqKQ74xialMbjVYGy7cOTi7Imd8ediE7t72SK3qnvhrTAhOvlQhq6Bk6nFPdXxe0sAg==}
+    peerDependencies:
+      vue: 3.3.10
+    dependencies:
+      '@vue/compiler-ssr': 3.3.10
+      '@vue/shared': 3.3.10
+      vue: 3.3.8(typescript@4.8.4)
     dev: false
 
   /@vue/server-renderer@3.3.8(vue@3.3.8):

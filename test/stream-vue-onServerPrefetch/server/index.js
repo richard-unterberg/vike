@@ -32,21 +32,28 @@ async function startServer() {
   }
 
   app.get('*', async (req, res, next) => {
+    console.log('LA_TEMP get 10')
     const userAgent = req.headers['user-agent']
     const pageContextInit = {
       urlOriginal: req.originalUrl,
       userAgent
     }
+    console.log('LA_TEMP get 20')
     const pageContext = await renderPage(pageContextInit)
+    console.log('LA_TEMP get 30')
     const { httpResponse } = pageContext
     if (!httpResponse) {
+      console.log('LA_TEMP get 40')
       return next()
     } else {
+      console.log('LA_TEMP get 50')
       const { statusCode, headers, earlyHints } = httpResponse
       if (res.writeEarlyHints) res.writeEarlyHints({ link: earlyHints.map((e) => e.earlyHintLink) })
       headers.forEach(([name, value]) => res.setHeader(name, value))
       res.status(statusCode)
+      console.log('LA_TEMP get 60')
       httpResponse.pipe(res)
+      console.log('LA_TEMP get 70')
     }
   })
 
