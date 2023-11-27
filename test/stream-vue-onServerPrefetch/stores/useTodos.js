@@ -10,7 +10,7 @@ export const useTodos = defineStore('todos', {
   actions: {
     async fetchTodoList() {
       // simulate an API response
-      const result = await new Promise((resolve) => setTimeout(() => resolve(todos), 250))
+      const result = await new Promise((resolve) => setTimeout(() => resolve(todos), 2000 /*LA_TEMP*/))
       this.todoList = result
     },
     async fetchTodoById(id) {
