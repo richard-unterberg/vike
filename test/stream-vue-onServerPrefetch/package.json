@@ -1,13 +1,20 @@
 {
   "scripts": {
-    "dev": "vite",
-    "preview": "vite build && vite preview"
+    "dev": "npm run server:dev",
+    "preview": "vite build && vite preview",
+    "prod": "npm run build && npm run server:prod",
+    "build": "vite build",
+    "server:dev": "node ./server",
+    "server:prod": "cross-env NODE_ENV=production node ./server"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/compiler-sfc": "^3.2.31",
     "@vue/server-renderer": "^3.2.37",
+    "compression": "^1.7.4",
+    "express": "^4.18.1",
     "pinia": "^2.0.14",
+    "sirv": "^2.0.2",
     "vite": "^4.0.3",
     "vike": "0.4.151",
     "vue": "^3.2.37"

@@ -1930,9 +1930,18 @@ importers:
       '@vue/server-renderer':
         specifier: ^3.2.37
         version: 3.3.8(vue@3.3.8)
+      compression:
+        specifier: ^1.7.4
+        version: 1.7.4
+      express:
+        specifier: ^4.18.1
+        version: 4.18.2
       pinia:
         specifier: ^2.0.14
         version: 2.1.7(typescript@4.8.4)(vue@3.3.8)
+      sirv:
+        specifier: ^2.0.2
+        version: 2.0.3
       vike:
         specifier: link:../../vike
         version: link:../../vike
