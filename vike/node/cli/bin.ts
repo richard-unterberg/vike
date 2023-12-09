@@ -1,8 +1,9 @@
 import { cac } from 'cac'
-import { resolve } from 'path'
+import { join, resolve } from 'path'
 import { prerenderFromCLI, prerenderForceExit } from '../prerender/runPrerender.js'
 import { projectInfo, assertUsage } from './utils.js'
-import { startDevServer } from '../dev/serverEntry.js'
+import { execSync } from 'child_process'
+import { resolveConfig } from 'vite'
 
 const cli = cac(projectInfo.projectName)
 
@@ -17,8 +18,22 @@ cli
     prerenderForceExit()
   })
 
-cli.command('dev', 'Start the development server', { allowUnknownOptions: true }).action((options) => {
-  startDevServer()
+cli.command('dev', 'Start the development server', { allowUnknownOptions: true }).action(async (options) => {
+  const config = await resolveConfig({}, 'serve')
+  const root = config.root
+  const scriptPath = join(root, 'node_modules/vike/dist/esm/node/dev/startDevServer.js')
+  const onRestart = () => {
+    try {
+      execSync(`node ${scriptPath}`, { stdio: 'inherit' })
+    } catch (error) {
+      if (!error || typeof error !== 'object' || !('status' in error) || error.status !== 33) {
+        throw error
+      }
+      onRestart()
+    }
+  }
+
+  onRestart()
 })
 
 function assertOptions() {
