@@ -2,6 +2,7 @@ import { cac } from 'cac'
 import { resolve } from 'path'
 import { prerenderFromCLI, prerenderForceExit } from '../prerender/runPrerender.js'
 import { projectInfo, assertUsage } from './utils.js'
+import { startDevServer } from '../dev/serverEntry.js'
 
 const cli = cac(projectInfo.projectName)
 
@@ -15,6 +16,10 @@ cli
     await prerenderFromCLI({ partial, noExtraDir, base, root, parallel, outDir, configFile })
     prerenderForceExit()
   })
+
+cli.command('dev', 'dev', { allowUnknownOptions: true }).action(async (options) => {
+  startDevServer()
+})
 
 function assertOptions() {
   // Using process.argv because cac convert names to camelCase
