@@ -1,9 +1,9 @@
 import { cac } from 'cac'
-import { join, resolve } from 'path'
+import { resolve } from 'path'
 import { prerenderFromCLI, prerenderForceExit } from '../prerender/runPrerender.js'
 import { projectInfo, assertUsage } from './utils.js'
 import { execSync } from 'child_process'
-import { resolveConfig } from 'vite'
+import { logViteAny } from '../plugin/shared/loggerNotProd.js'
 
 const cli = cac(projectInfo.projectName)
 
@@ -19,10 +19,9 @@ cli
   })
 
 cli.command('dev', 'Start the development server', { allowUnknownOptions: true }).action(async (options) => {
-  const config = await resolveConfig({}, 'serve')
-  const root = config.root
-  const scriptPath = join(root, 'node_modules/vike/dist/esm/node/dev/startDevServer.js')
-  const onRestart = () => {
+  logViteAny('Starting development server', 'info', null, true)
+  const scriptPath = 'node_modules/vike/dist/esm/node/dev/startDevServer.js'
+  function onRestart() {
     try {
       execSync(`node ${scriptPath}`, { stdio: 'inherit' })
     } catch (error) {
