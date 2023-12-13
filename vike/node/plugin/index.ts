@@ -49,14 +49,13 @@ function plugin(vikeConfig?: ConfigVikeUserProvided): any {
     extractExportNamesPlugin(),
     suppressRollupWarning(),
     setGlobalContext(),
-    ...importBuild(),
+    ...importBuild(vikeConfig),
     extensionsAssets(),
     baseUrls(vikeConfig),
     envVarsPlugin(),
     assertFileEnv(),
     ...serverEntryPlugin(vikeConfig)
   ]
-
   return plugins
 }
 
