@@ -1,11 +1,12 @@
 import { cac } from 'cac'
 import { execSync } from 'child_process'
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 import { resolveConfig } from 'vite'
 import { getServerEntry } from '../plugin/plugins/serverEntryPlugin.js'
 import { logViteAny } from '../plugin/shared/loggerNotProd.js'
 import { prerenderForceExit, prerenderFromCLI } from '../prerender/runPrerender.js'
 import { assertUsage, projectInfo } from './utils.js'
+import { fileURLToPath } from 'url'
 
 const cli = cac(projectInfo.projectName)
 
@@ -52,7 +53,10 @@ cli
       return
     }
 
-    const scriptPath = 'node_modules/vike/dist/esm/node/dev/startDevServer.js'
+    // @ts-ignore Shimed by dist-cjs-fixup.js for CJS build.
+    const importMetaUrl: string = import.meta.url
+    const __dirname_ = path.dirname(fileURLToPath(importMetaUrl))
+    const scriptPath = path.join(__dirname_, '..', 'dev/startDevServer.js')
     function onRestart() {
       try {
         execSync(`node ${scriptPath}`, { stdio: 'inherit' })
