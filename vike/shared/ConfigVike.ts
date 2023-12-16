@@ -1,6 +1,7 @@
 export type { ConfigVikeUserProvided }
 export type { ConfigVikeResolved }
 export type { ExtensionResolved }
+export type { ServerResolved }
 
 type ExtensionUserProvided = {
   npmPackageName: string
@@ -24,6 +25,9 @@ type ExtensionResolved = {
   pageConfigsSrcDir: null | string
   assetsDir: null | string
 }
+type ReloadStrategy = 'fast' | 'full'
+type ServerUserProvided = string | { entry: string; reload: ReloadStrategy }
+type ServerResolved = undefined | { entry: string; reload: ReloadStrategy }
 
 type ConfigVikeResolved = {
   prerender:
@@ -145,7 +149,7 @@ type ConfigVikeUserProvided = {
   /** Server entry path.
    *
    */
-  server?: string | { entry: string; reload: 'fast' | 'reliable' }
+  server?: ServerUserProvided
 
   /** Enable standalone build.
    *  Setting `server` is required.
