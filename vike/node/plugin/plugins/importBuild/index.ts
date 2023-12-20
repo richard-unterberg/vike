@@ -34,7 +34,7 @@ function importBuild(configVike2?: ConfigVikeUserProvided): Plugin[] {
       }
     },
     importBuild_({
-      disableAutoImporter: !!configVike2?.server,
+      inject: !!configVike2?.server,
       getImporterCode: () => {
         return getEntryCode(config, configVike)
       },
