@@ -1,6 +1,7 @@
 import { cac } from 'cac'
 import { execSync } from 'child_process'
 import path, { resolve } from 'path'
+import { resolveConfig } from 'vite'
 import { getServerConfig } from '../plugin/plugins/serverEntryPlugin.js'
 import { logViteAny } from '../plugin/shared/loggerNotProd.js'
 import { prerenderForceExit, prerenderFromCLI } from '../prerender/runPrerender.js'
@@ -33,6 +34,7 @@ cli
   .action(async (root, options) => {
     logViteAny('Starting development server', 'info', null, true)
 
+    const config = await resolveConfig({}, 'serve')
     const serverConfig = getServerConfig()
     if (!serverConfig?.entry) {
       let command = 'vite dev'
