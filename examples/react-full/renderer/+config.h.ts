@@ -7,6 +7,9 @@ export default {
   hydrationCanBeAborted: true,
   // https://vike.dev/meta
   meta: {
+    guard: {
+      env: { server: false, client: true }
+    },
     // Create new config 'title'
     title: {
       env: { server: true, client: true }
