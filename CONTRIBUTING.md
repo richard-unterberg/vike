@@ -128,6 +128,9 @@ cd docs/ # From the monorepo root
 pnpm run dev
 ```
 
+> [!NOTE]
+> Make sure you run `pnpm build` in root, since docs rely on the local vike build.
+
 <br/>
 
 
