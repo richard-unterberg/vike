@@ -20,6 +20,7 @@ export const textOtherFrameworks = 'Other'
 
 const FlexibilitySection = () => {
   const onSeeUseCasesClick = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+    ev.stopPropagation()
     ev.preventDefault()
     smoothScrollToSelector('#hooks')
   }
