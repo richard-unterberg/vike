@@ -83,7 +83,7 @@ const useUspHero = () => {
         if (!sectionNode) {
           return
         }
-        smoothScrollToTarget(sectionNode)
+        smoothScrollToTarget(sectionNode, -20)
       }
       const scrollToTop = () => {
         if (typeof window === 'undefined') {
@@ -345,6 +345,7 @@ const useUspHero = () => {
       orderedSectionEntries.forEach(({ id, node }, index) => {
         const nextEntry = orderedSectionEntries[index + 1]
 
+        const stickyProgressStart = 'top 70%'
         const sectionTrigger = ScrollTrigger.create({
           id: `intro-usp-hero-section-progress-${id}`,
           trigger: node,
